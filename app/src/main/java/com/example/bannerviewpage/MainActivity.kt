@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import com.example.banner.adapter.BannerImageAdapter
 import com.example.banner.holder.BannerImageHolder
+import com.example.banner.indicator.CircleIndicator
 import com.example.banner.indicator.RoundIndicator
 import com.example.banner.view.Banner
 import com.example.bannerviewpage.adapter.ImageAdapter
@@ -25,7 +26,7 @@ class MainActivity : ComponentActivity() {
 
         mBanner?.apply {
             setBannerRound(20f)
-            setIndicator(RoundIndicator(this@MainActivity))
+            setIndicator(CircleIndicator(this@MainActivity))
             setAdapter(ImageAdapter(imageUrls))
         }
 

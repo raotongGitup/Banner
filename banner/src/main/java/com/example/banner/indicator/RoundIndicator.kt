@@ -12,7 +12,7 @@ import com.example.banner.utils.BannerConfig
  *
  * @author: raotong
  * @date: 2023年06月25日 16:50
- * @Description: 圆点指示器（模版）
+ * @Description: 圆角线指示器（模版）
  */
 class RoundIndicator @JvmOverloads constructor(
     context: Context,
