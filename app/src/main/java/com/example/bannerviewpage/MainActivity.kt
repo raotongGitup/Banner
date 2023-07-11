@@ -1,11 +1,13 @@
 package com.example.bannerviewpage
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
-import com.example.banner.adapter.BannerImageAdapter
-import com.example.banner.holder.BannerImageHolder
+import androidx.viewpager2.widget.ViewPager2
 import com.example.banner.indicator.CircleIndicator
 import com.example.banner.indicator.RoundIndicator
+import com.example.banner.listener.OnPageChangeListener
 import com.example.banner.view.Banner
 import com.example.bannerviewpage.adapter.ImageAdapter
 
@@ -26,10 +28,35 @@ class MainActivity : ComponentActivity() {
 
         mBanner?.apply {
             setBannerRound(20f)
-            setIndicator(CircleIndicator(this@MainActivity))
+            setIndicator(CircleIndicator(this@MainActivity),false)
             setAdapter(ImageAdapter(imageUrls))
+            addOnPageChangeListener(object : OnPageChangeListener{
+                override fun onPageScrolled(
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int
+                ) {
+                    Log.e("position", "onPageScrolled: "+position )
+
+                }
+
+                override fun onPageSelected(position: Int) {
+                   Toast.makeText(this@MainActivity,"position::${position}",Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onPageScrollStateChanged(state: Int) {
+
+
+                }
+
+            })
         }
 
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mBanner?.destroy()
     }
 }

@@ -370,10 +370,10 @@ class Banner<T> @JvmOverloads constructor(
      * 移除一些引用
      */
     fun destroy() {
-        if (getViewPage() != null && mPageChangeCallback != null) {
-            getViewPage()?.unregisterOnPageChangeCallback(mPageChangeCallback!!)
-            mPageChangeCallback = null
-        }
+        mPageChangeCallback?.let {
+                getViewPage()?.unregisterOnPageChangeCallback(it)
+                mPageChangeCallback = null
+            }
         stop()
     }
 
@@ -802,11 +802,6 @@ class Banner<T> @JvmOverloads constructor(
         return mScrollTime
     }
     /**
-     * **********************************************************************
-     * ------------------------ 指示器相关设置 --------------------------------*
-     * **********************************************************************
-     */
-    /**
      * 设置轮播指示器(显示在banner上)
      */
     fun setIndicator(indicator: Indicator): Banner<T>? {
@@ -818,7 +813,7 @@ class Banner<T> @JvmOverloads constructor(
      *
      * @param attachToBanner 是否将指示器添加到banner中，false 代表你可以将指示器通过布局放在任何位置
      * 注意：设置为false后，内置的 setIndicatorGravity()和setIndicatorMargins() 方法将失效。
-     * 想改变可以自己调用系统提供的属性在布局文件中进行设置。具体可以参照demo
+     * 想改变可以自己调用系统提供的属性在布局文件中进行设置
      */
     fun setIndicator(indicator: Indicator, attachToBanner: Boolean): Banner<T>? {
         removeIndicator()

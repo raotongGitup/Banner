@@ -59,7 +59,7 @@ abstract class BannerAdapter<T, VH : RecyclerView.ViewHolder>(var mData: ArrayLi
 
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        var visposition = position % (mData.size)
+        var visposition = getRealPosition(position)
         var data = mData[visposition]
         mViewHolder = holder
         onBindHolder(holder, data, visposition)
